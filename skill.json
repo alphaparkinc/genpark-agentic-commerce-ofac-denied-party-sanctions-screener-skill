@@ -1,0 +1,68 @@
+{
+  "name": "genpark-agentic-commerce-ofac-denied-party-sanctions-screener-skill",
+  "version": "1.0.0",
+  "title": "Trade Sanctions OFAC SDN & Denied Party Compliance Screener Skill",
+  "description": "OFAC Specially Designated Nationals (SDN), BIS Entity List fuzzy string Levenshtein compliance, and automated international embargo blocker. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "agentic-commerce",
+  "topics": [
+    "ofac",
+    "sanctions-screening",
+    "sdn-list",
+    "trade-compliance",
+    "agentic-commerce",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "screen_entity_against_sanctions_registry",
+      "description": "Fuzzy match individual or corporate entity name and country against international export control databases.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "entity_name": {
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string"
+          },
+          "fuzzy_threshold_pct": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "entity_name",
+          "country_code"
+        ]
+      }
+    },
+    {
+      "name": "generate_compliance_hold_blocking_memo",
+      "description": "Generate formal AML/OFAC transaction hold memo for flagged payment or shipment export.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "transaction_id": {
+            "type": "string"
+          },
+          "entity_name": {
+            "type": "string"
+          },
+          "match_score_pct": {
+            "type": "number"
+          },
+          "matched_list": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "transaction_id",
+          "entity_name",
+          "match_score_pct"
+        ]
+      }
+    }
+  ]
+}
